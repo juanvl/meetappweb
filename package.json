@@ -3,18 +3,23 @@
   "version": "1.0.0",
   "license": "MIT",
   "dependencies": {
+    "@rocketseat/unform": "^1.6.1",
+    "polished": "^3.4.1",
+    "prop-types": "latest",
     "react": "latest",
     "react-dom": "latest",
     "react-router-dom": "latest",
     "react-scripts": "latest",
-    "styled-components": "latest",
-    "prop-types": "latest",
+    "styled-components": "latest"
   },
   "devDependencies": {
+    "babel-plugin-root-import": "latest",
     "babel-plugin-styled-components": "latest",
+    "customize-cra": "latest",
     "eslint": "latest",
     "eslint-config-airbnb": "latest",
     "eslint-config-prettier": "latest",
+    "eslint-import-resolver-babel-plugin-root-import": "latest",
     "eslint-plugin-html": "latest",
     "eslint-plugin-import": "latest",
     "eslint-plugin-jsx-a11y": "latest",
@@ -23,11 +28,8 @@
     "eslint-plugin-react-hooks": "latest",
     "eslint-plugin-react-native": "latest",
     "prettier": "latest",
-    "reactotron-react-js": "latest",
-    "customize-cra": "latest",
     "react-app-rewired": "latest",
-    "babel-plugin-root-import": "latest",
-    "eslint-import-resolver-babel-plugin-root-import": "latest",
+    "reactotron-react-js": "latest"
   },
   "scripts": {
     "start": "react-app-rewired start",
