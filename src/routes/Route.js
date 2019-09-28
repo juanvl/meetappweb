@@ -1,12 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import { Route as RouteRRD, Redirect } from 'react-router-dom';
 
+import { store } from '~/store';
 import AuthLayout from '~/pages/_layouts/auth';
 import DefaultLayout from '~/pages/_layouts/default';
 
 export default function Route({ component: Component, isPrivate, ...rest }) {
-  const signed = false;
-  const Layout = signed ? DefaultLayout : AuthLayout;
+  const { signed } = store.getState().auth;
 
   if (!signed && isPrivate) {
     return <Redirect to="/" />;
@@ -15,6 +16,8 @@ export default function Route({ component: Component, isPrivate, ...rest }) {
   if (signed && !isPrivate) {
     return <Redirect to="/dashboard" />;
   }
+
+  const Layout = signed ? DefaultLayout : AuthLayout;
 
   return (
     <RouteRRD
@@ -27,3 +30,13 @@ export default function Route({ component: Component, isPrivate, ...rest }) {
     />
   );
 }
+
+Route.propTypes = {
+  isPrivate: PropTypes.bool,
+  component: PropTypes.oneOfType([PropTypes.element, PropTypes.func])
+    .isRequired,
+};
+
+Route.defaultProps = {
+  isPrivate: false,
+};
