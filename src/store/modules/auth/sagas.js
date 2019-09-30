@@ -3,7 +3,7 @@ import { toast } from 'react-toastify';
 import api from '~/services/api';
 import history from '~/services/history';
 
-import { signInSuccess, signFailure } from './actions';
+import { signInSuccess, signUpSuccess, signFailure } from './actions';
 
 export function* signInRequest({ payload }) {
   try {
@@ -23,6 +23,25 @@ export function* signInRequest({ payload }) {
   }
 }
 
+export function* signUpRequest({ payload }) {
+  try {
+    const { name, email, password } = payload;
+
+    const res = yield call(api.post, 'users', {
+      name,
+      email,
+      password,
+    });
+
+    yield put(signUpSuccess(res.data));
+
+    history.push('/');
+  } catch (error) {
+    toast.error('Algo deu errado :( Verifique os dados e tente novamente');
+    yield put(signFailure());
+  }
+}
+
 export function setToken({ payload }) {
   if (!payload) return;
 
@@ -35,5 +54,6 @@ export function setToken({ payload }) {
 
 export default all([
   takeLatest('@auth/SIGN_IN_REQUEST', signInRequest),
+  takeLatest('@auth/SIGN_UP_REQUEST', signUpRequest),
   takeLatest('persist/REHYDRATE', setToken),
 ]);
