@@ -28,6 +28,8 @@ export default function auth(state = INITIAL_STATE, action) {
       });
     case '@auth/SIGN_FAILURE':
       return INITIAL_STATE;
+    case '@auth/SIGN_OUT':
+      return INITIAL_STATE;
     default:
       return state;
   }
