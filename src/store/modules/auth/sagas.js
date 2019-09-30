@@ -12,7 +12,7 @@ export function* signInRequest({ payload }) {
     const res = yield call(api.post, 'sessions', { email, password });
     const { user, token } = res.data;
 
-    // api.defaults.headers.Authorization = `Bearer ${token}`;
+    api.defaults.headers.Authorization = `Bearer ${token}`;
 
     yield put(signInSuccess(user, token));
 
@@ -23,4 +23,17 @@ export function* signInRequest({ payload }) {
   }
 }
 
-export default all([takeLatest('@auth/SIGN_IN_REQUEST', signInRequest)]);
+export function setToken({ payload }) {
+  if (!payload) return;
+
+  const { token } = payload.auth;
+
+  if (token) {
+    api.defaults.headers.Authorization = `Bearer ${token}`;
+  }
+}
+
+export default all([
+  takeLatest('@auth/SIGN_IN_REQUEST', signInRequest),
+  takeLatest('persist/REHYDRATE', setToken),
+]);
