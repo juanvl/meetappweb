@@ -35,7 +35,7 @@ export function* signUpRequest({ payload }) {
 
     yield put(signUpSuccess(res.data));
 
-    history.push('/');
+    history.push('/', { email, password });
   } catch (error) {
     toast.error('Algo deu errado :( Verifique os dados e tente novamente');
     yield put(signFailure());
