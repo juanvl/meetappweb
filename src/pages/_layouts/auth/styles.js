@@ -48,5 +48,11 @@ export const Container = styled.div`
         opacity: 1;
       }
     }
+
+    span {
+      color: red;
+      margin-bottom: 10px;
+      align-self: center;
+    }
   }
 `;

@@ -2,10 +2,18 @@ import React, { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
+import * as Yup from 'yup';
 
 import { signInRequest } from '~/store/modules/auth/actions';
 
 import logo from '~/assets/logo.svg';
+
+const schema = Yup.object().shape({
+  email: Yup.string()
+    .email('Insira um email válido!')
+    .required('O email é obrigatório!'),
+  password: Yup.string().required('A senha é obrigatória!'),
+});
 
 export default function SignIn(props) {
   const dispatch = useDispatch();
@@ -19,7 +27,11 @@ export default function SignIn(props) {
   }
 
   return (
-    <Form initialData={props.history.location.state} onSubmit={handleSubmit}>
+    <Form
+      initialData={props.history.location.state}
+      onSubmit={handleSubmit}
+      schema={schema}
+    >
       <img src={logo} alt="MeetApp" />
       <Input name="email" type="email" placeholder="Digite seu email" />
       <Input name="password" type="password" placeholder="Sua senha secreta" />
