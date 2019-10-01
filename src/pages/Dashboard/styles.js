@@ -44,6 +44,7 @@ export const Container = styled.div`
     margin-top: 50px;
 
     li {
+      cursor: pointer;
       height: 62px;
       padding: 0 75px 0 30px;
       margin-bottom: 10px;
