@@ -1,4 +1,5 @@
-import React, { useEffect } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import { Link } from 'react-router-dom';
@@ -15,12 +16,8 @@ const schema = Yup.object().shape({
   password: Yup.string().required('A senha é obrigatória!'),
 });
 
-export default function SignIn(props) {
+export default function SignIn({ history }) {
   const dispatch = useDispatch();
-
-  useEffect(() => {
-    console.tron.log(props);
-  }, [props]);
 
   function handleSubmit({ email, password }) {
     dispatch(signInRequest(email, password));
@@ -28,7 +25,7 @@ export default function SignIn(props) {
 
   return (
     <Form
-      initialData={props.history.location.state}
+      initialData={history.location.state}
       onSubmit={handleSubmit}
       schema={schema}
     >
@@ -40,3 +37,19 @@ export default function SignIn(props) {
     </Form>
   );
 }
+
+SignIn.propTypes = {
+  history: PropTypes.shape({
+    location: PropTypes.shape({
+      state: PropTypes.object,
+    }),
+  }),
+};
+
+SignIn.defaultProps = {
+  history: {
+    location: {
+      state: undefined,
+    },
+  },
+};
