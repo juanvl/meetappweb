@@ -39,7 +39,7 @@ export default createGlobalStyle`
     cursor: pointer;
   }
 
-  form input {
+  form input, textarea {
     height: 50px;
     background: rgba(0,0,0, 0.2);
     border: 0;
@@ -48,6 +48,8 @@ export default createGlobalStyle`
     padding: 20px;
     font-size: 18px;
     color: #fff;
+    overflow: hidden;
+    resize: none;
 
     &::placeholder {
       color: rgba(255,255,255, 0.5);

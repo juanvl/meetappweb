@@ -1,36 +1,47 @@
 import React from 'react';
+import { Form, Input } from '@rocketseat/unform';
 import { MdAddCircleOutline } from 'react-icons/md';
 
+import { toast } from 'react-toastify';
 import * as S from './styles';
+import BannerInput from '~/components/BannerInput';
+import api from '~/services/api';
+import history from '~/services/history';
 
-const Dashboard = () => (
-  <S.Container>
-    <div>
-      <h1>Meus meetups</h1>
-      <button type="button">
-        <MdAddCircleOutline size={20} color="#fff" />
-        Novo meetup
-      </button>
-    </div>
-    <ul>
-      <li>
-        <strong>Meetup de blablabla</strong>
-        <span>24 de junho, às 20h</span>
-      </li>
-      <li>
-        <strong>Meetup de blablabla</strong>
-        <span>24 de junho, às 20h</span>
-      </li>
-      <li>
-        <strong>Meetup de blablabla</strong>
-        <span>24 de junho, às 20h</span>
-      </li>
-      <li>
-        <strong>Meetup de blablabla</strong>
-        <span>24 de junho, às 20h</span>
-      </li>
-    </ul>
-  </S.Container>
-);
+const NewMeetup = () => {
+  async function handleSubmit(data) {
+    try {
+      await api.post('meetups', { ...data, file_id: 1 });
+      toast.success('Meetup criado com sucesso! :D');
+      history.push('/');
+    } catch (error) {
+      toast.error(
+        `Algo deu errado :( Verifique os campos e tente novamente! Detalhes: ${error.response.data.error}`
+      );
+    }
+  }
 
-export default Dashboard;
+  return (
+    <S.Container>
+      <Form onSubmit={handleSubmit}>
+        <BannerInput name="file_id" />
+        <Input name="title" type="text" placeholder="Título do Meetup" />
+        <Input
+          name="desc"
+          type="text"
+          multiline
+          placeholder="Descrição do Meetup"
+        />
+        <Input name="date" type="datetime-local" />
+        <Input name="location" type="text" placeholder="Localização" />
+
+        <button type="submit">
+          <MdAddCircleOutline size={20} color="#fff" />
+          Salvar meetup
+        </button>
+      </Form>
+    </S.Container>
+  );
+};
+
+export default NewMeetup;

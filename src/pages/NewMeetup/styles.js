@@ -3,22 +3,32 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 900px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
   margin: 50px auto;
+  padding: 0 20px;
 
-  div {
+  form {
     display: flex;
-    justify-content: space-between;
+    flex-direction: column;
 
-    h1 {
-      font-weight: bold;
-      font-size: 32px;
-      color: #ffffff;
+    input,
+    textarea {
+      margin-bottom: 10px;
+    }
+
+    input[type='datetime-local'] {
+      &::-webkit-datetime-edit {
+        min-width: 100%;
+        width: 100%;
+      }
+    }
+
+    textarea {
+      height: 200px;
     }
 
     button {
+      align-self: flex-end;
+      margin-top: 10px;
       background-color: #f94d6a;
       border: 0;
       border-radius: 4px;
@@ -36,35 +46,6 @@ export const Container = styled.div`
 
       svg {
         margin-right: 10px;
-      }
-    }
-  }
-
-  ul {
-    margin-top: 50px;
-
-    li {
-      cursor: pointer;
-      height: 62px;
-      padding: 0 75px 0 30px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
-
-      strong {
-        font-weight: bold;
-        font-size: 18px;
-        color: #ffffff;
-      }
-
-      span {
-        font-size: 16px;
-        text-align: right;
-        color: #ffffff;
-        opacity: 0.6;
       }
     }
   }
