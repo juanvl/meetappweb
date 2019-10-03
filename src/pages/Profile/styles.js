@@ -42,5 +42,11 @@ export const Container = styled.div`
         margin-right: 10px;
       }
     }
+
+    span {
+      color: red;
+      margin-bottom: 10px;
+      align-self: center;
+    }
   }
 `;

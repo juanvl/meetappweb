@@ -6,7 +6,7 @@ import api from '~/services/api';
 export function* updateProfileRequest({ payload }) {
   try {
     const { name, email, ...rest } = payload.data;
-    const profile = { name, email, ...(rest.oldPassword ? rest : {}) };
+    const profile = { name, email, ...(rest.currentPassword ? rest : {}) };
 
     const res = yield call(api.put, 'users', profile);
 
