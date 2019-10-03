@@ -17,7 +17,7 @@ export default function BannerInput() {
     if (inputRef.current) {
       registerField({
         name: 'file_id',
-        inputRef: inputRef.current,
+        ref: inputRef.current,
         path: 'dataset.file',
       });
     }
@@ -36,7 +36,7 @@ export default function BannerInput() {
 
   return (
     <S.Container>
-      <label htmlFor="banner">
+      <label htmlFor="file">
         {preview ? (
           <img src={preview} alt="Meetup banner" />
         ) : (
@@ -48,7 +48,7 @@ export default function BannerInput() {
 
         <input
           type="file"
-          id="banner"
+          id="file"
           accept="image/*"
           ref={inputRef}
           data-file={file}

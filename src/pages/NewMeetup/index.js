@@ -1,8 +1,8 @@
 import React from 'react';
 import { Form, Input } from '@rocketseat/unform';
 import { MdAddCircleOutline } from 'react-icons/md';
-
 import { toast } from 'react-toastify';
+
 import * as S from './styles';
 import BannerInput from '~/components/BannerInput';
 import api from '~/services/api';
@@ -10,8 +10,9 @@ import history from '~/services/history';
 
 const NewMeetup = () => {
   async function handleSubmit(data) {
+    console.tron.log(data);
     try {
-      await api.post('meetups', { ...data, file_id: 1 });
+      await api.post('meetups', data);
       toast.success('Meetup criado com sucesso! :D');
       history.push('/');
     } catch (error) {
