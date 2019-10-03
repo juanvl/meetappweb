@@ -1,12 +1,12 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
+  width: 100%;
   height: 300px;
   margin-bottom: 10px;
   background: rgba(0, 0, 0, 0.4);
   border: 0;
   border-radius: 4px;
-  width: 100%;
   font-size: 18px;
   color: #fff;
 
@@ -25,6 +25,7 @@ export const Container = styled.div`
     }
 
     img {
+      max-width: 90%;
       max-height: 260px;
       background: #eee;
     }

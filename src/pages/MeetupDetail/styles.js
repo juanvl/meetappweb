@@ -3,69 +3,77 @@ import { darken } from 'polished';
 
 export const Container = styled.div`
   max-width: 900px;
-  padding: 0 20px;
-  display: flex;
-  flex-direction: column;
   margin: 50px auto;
+  padding: 0 20px;
 
   div {
     display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    align-items: center;
 
     h1 {
       font-weight: bold;
       font-size: 32px;
       color: #ffffff;
     }
+  }
 
-    button {
-      background-color: #f94d6a;
-      border: 0;
-      border-radius: 4px;
-      padding: 12px 20px;
-      color: #fff;
-      font-weight: bold;
+  img {
+    max-width: 100%;
+    max-height: 300px;
+    margin-top: 50px;
+  }
+
+  p {
+    margin-top: 25px;
+    font-size: 16px;
+    line-height: 32px;
+    color: #ffffff;
+  }
+
+  footer {
+    margin-top: 30px;
+    display: flex;
+
+    span {
       font-size: 16px;
+      color: #ffffff;
+      opacity: 0.6;
+      margin-right: 30px;
       display: flex;
+      flex-direction: row;
       align-items: center;
       justify-content: space-between;
-
-      &:hover {
-        background-color: ${darken(0.05, '#f94d6a')};
-      }
 
       svg {
         margin-right: 10px;
       }
     }
   }
+`;
 
-  ul {
-    margin-top: 50px;
+export const Button = styled.button`
+  align-self: flex-end;
+  margin-top: 10px;
+  margin-left: 15px;
+  background-color: ${({ bgcolor }) => bgcolor || '#f94d6a'};
+  border: 0;
+  border-radius: 4px;
+  padding: 12px 20px;
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    li {
-      cursor: pointer;
-      height: 62px;
-      padding: 0 75px 0 30px;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      background: rgba(0, 0, 0, 0.1);
-      border-radius: 4px;
+  &:hover {
+    background-color: ${({ bgcolor }) =>
+      bgcolor ? darken(0.05, bgcolor) : darken(0.05, '#f94d6a')};
+  }
 
-      strong {
-        font-weight: bold;
-        font-size: 18px;
-        color: #ffffff;
-      }
-
-      span {
-        font-size: 16px;
-        text-align: right;
-        color: #ffffff;
-        opacity: 0.6;
-      }
-    }
+  svg {
+    margin-right: 10px;
   }
 `;
