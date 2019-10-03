@@ -5,7 +5,7 @@ export const Container = styled.div`
   height: 300px;
   margin-bottom: 10px;
   background: rgba(0, 0, 0, 0.4);
-  border: 0;
+  border: ${({ error }) => (error ? '1px solid red' : 0)};
   border-radius: 4px;
   font-size: 18px;
   color: #fff;

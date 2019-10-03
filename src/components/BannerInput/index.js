@@ -5,7 +5,7 @@ import { useField } from '@rocketseat/unform';
 import api from '~/services/api';
 import * as S from './styles';
 
-export default function BannerInput() {
+export default function BannerInput({ error }) {
   const { defaultValue, registerField } = useField('file');
 
   const [file, setFile] = useState(defaultValue && defaultValue.id);
@@ -35,7 +35,7 @@ export default function BannerInput() {
   }
 
   return (
-    <S.Container>
+    <S.Container error={error}>
       <label htmlFor="file">
         {preview ? (
           <img src={preview} alt="Meetup banner" />
