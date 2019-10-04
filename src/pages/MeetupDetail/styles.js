@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
 
 export const Container = styled.div`
@@ -23,6 +23,9 @@ export const Container = styled.div`
     max-width: 100%;
     max-height: 300px;
     margin-top: 50px;
+    background-color: rgba(0, 0, 0, 0.3);
+    width: 100%;
+    height: 300px;
   }
 
   p {
@@ -50,6 +53,28 @@ export const Container = styled.div`
         margin-right: 10px;
       }
     }
+  }
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const LoadingContainer = styled.div`
+  min-height: 300px;
+  width: 200px;
+  margin: 50px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    animation: ${rotate} 2s linear infinite;
   }
 `;
 
