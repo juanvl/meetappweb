@@ -3,6 +3,7 @@ import { MdAddCircleOutline } from 'react-icons/md';
 import { format, parseISO } from 'date-fns';
 import pt from 'date-fns/locale/pt';
 
+import Button from '~/components/Button';
 import * as S from './styles';
 import history from '~/services/history';
 import api from '~/services/api';
@@ -12,7 +13,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await api.get('/meetups/owned');
+      const res = await api.get('meetups/owned');
 
       const data = res.data.map(m => {
         return {
@@ -35,10 +36,10 @@ const Dashboard = () => {
     <S.Container>
       <div>
         <h1>Meus meetups</h1>
-        <button type="button" onClick={() => history.push('/meetups/new')}>
+        <Button onClick={() => history.push('/meetups/new')}>
           <MdAddCircleOutline size={20} color="#fff" />
           Novo meetup
-        </button>
+        </Button>
       </div>
       <ul>
         {meetups.map(m => (

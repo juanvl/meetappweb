@@ -1,19 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import Popup from 'reactjs-popup';
 import { MdPlace, MdEvent, MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
+import { toast } from 'react-toastify';
 
+import Button from '~/components/Button';
 import * as S from './styles';
 import api from '~/services/api';
+import history from '~/services/history';
 
 const MeetupDetail = ({ match }) => {
   const [meetup, setMeetup] = useState(null);
 
   useEffect(() => {
     (async () => {
-      const res = await api.get(`/meetups/owned/${match.params.id}`);
+      const res = await api.get(`meetups/owned/${match.params.id}`);
       setMeetup(res.data);
     })();
   }, [match.params.id]);
+
+  async function handleEdit() {}
+
+  async function handleDelete() {
+    await api.delete(`meetups/${meetup.id}`);
+    toast.success('Meetup cancelado!');
+    history.push('/dashboard');
+  }
 
   if (!meetup) {
     return (
@@ -28,14 +40,35 @@ const MeetupDetail = ({ match }) => {
       <div>
         <h1>{meetup.title}</h1>
         <div>
-          <S.Button type="button" bgcolor="#4DBAF9">
+          <Button bgColor="#4DBAF9" className="editButton" onClick={handleEdit}>
             <MdEdit size={20} color="#fff" />
             Editar
-          </S.Button>
-          <S.Button type="button">
-            <MdDeleteForever size={20} color="#fff" />
-            Cancelar
-          </S.Button>
+          </Button>
+          <Popup
+            trigger={
+              <Button>
+                <MdDeleteForever size={20} color="#fff" />
+                Cancelar
+              </Button>
+            }
+            modal
+            closeOnDocumentClick
+          >
+            {close => (
+              <div className="modal">
+                <h1>Cancelar Meetup</h1>
+                <span>Tem certeza que deseja cancelar este Meetup?</span>
+                <div>
+                  <Button onClick={handleDelete} className="yesButton">
+                    Sim
+                  </Button>
+                  <Button bgColor="#cccccc" onClick={() => close()}>
+                    Voltar
+                  </Button>
+                </div>
+              </div>
+            )}
+          </Popup>
         </div>
       </div>
 

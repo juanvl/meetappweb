@@ -1,5 +1,4 @@
 import styled, { keyframes } from 'styled-components';
-import { darken } from 'polished';
 
 const fadeIn = keyframes`
   from {
@@ -26,6 +25,10 @@ export const Container = styled.div`
       font-weight: bold;
       font-size: 32px;
       color: #ffffff;
+    }
+
+    .editButton {
+      margin-right: 15px;
     }
   }
 
@@ -64,6 +67,38 @@ export const Container = styled.div`
       }
     }
   }
+
+  .popup-content {
+    min-width: 400px !important;
+    max-width: 500px !important;
+    border-radius: 4px;
+  }
+  .modal {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    padding: 20px;
+
+    h1 {
+      font-size: 26px;
+      font-weight: bold;
+      color: #333333;
+    }
+
+    span {
+      font-size: 16px;
+      margin-top: 20px;
+    }
+
+    div {
+      margin-top: 30px;
+      align-self: flex-end;
+
+      .yesButton {
+        margin-right: 10px;
+      }
+    }
+  }
 `;
 
 const rotate = keyframes`
@@ -85,30 +120,5 @@ export const LoadingContainer = styled.div`
 
   svg {
     animation: ${rotate} 2s linear infinite;
-  }
-`;
-
-export const Button = styled.button`
-  align-self: flex-end;
-  margin-top: 10px;
-  margin-left: 15px;
-  background-color: ${({ bgcolor }) => bgcolor || '#f94d6a'};
-  border: 0;
-  border-radius: 4px;
-  padding: 12px 20px;
-  color: #fff;
-  font-weight: bold;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-
-  &:hover {
-    background-color: ${({ bgcolor }) =>
-      bgcolor ? darken(0.05, bgcolor) : darken(0.05, '#f94d6a')};
-  }
-
-  svg {
-    margin-right: 10px;
   }
 `;

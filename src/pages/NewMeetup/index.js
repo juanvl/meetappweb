@@ -5,6 +5,7 @@ import { toast } from 'react-toastify';
 import * as Yup from 'yup';
 
 import * as S from './styles';
+import Button from '~/components/Button';
 import BannerInput from '~/components/BannerInput';
 import api from '~/services/api';
 import history from '~/services/history';
@@ -55,10 +56,10 @@ const NewMeetup = () => {
         <Input name="date" type="datetime-local" />
         <Input name="location" type="text" placeholder="Localização" />
 
-        <button type="submit">
+        <Button type="submit">
           <MdAddCircleOutline size={20} color="#fff" />
           Salvar meetup
-        </button>
+        </Button>
       </Form>
     </S.Container>
   );

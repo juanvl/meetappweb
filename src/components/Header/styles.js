@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { darken } from 'polished';
 
 export const Container = styled.div`
   background: rgba(0, 0, 0, 0.3);
@@ -42,21 +41,6 @@ export const User = styled.div`
       font-size: 14px;
       margin-top: 5px;
       color: #999999;
-    }
-  }
-
-  button {
-    padding: 12px 20px;
-    background-color: #d44059;
-    border: 0;
-    border-radius: 4px;
-    font-style: normal;
-    font-weight: bold;
-    font-size: 16px;
-    color: #ffffff;
-
-    &:hover {
-      background-color: ${darken(0.05, '#d44059')};
     }
   }
 `;

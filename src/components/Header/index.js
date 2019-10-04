@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 import { signOut } from '~/store/modules/auth/actions';
 import history from '~/services/history';
 
+import Button from '~/components/Button';
 import logo from '~/assets/logo.svg';
 import * as S from './styles';
 
@@ -30,9 +31,7 @@ export default function Header() {
               <span>Meu perfil</span>
             </Link>
           </div>
-          <button type="button" onClick={handleLogout}>
-            Sair
-          </button>
+          <Button onClick={handleLogout}>Sair</Button>
         </S.User>
       </div>
     </S.Container>

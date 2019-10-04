@@ -5,6 +5,7 @@ import { MdAddCircleOutline } from 'react-icons/md';
 import * as Yup from 'yup';
 
 import { updateProfileRequest } from '~/store/modules/user/actions';
+import Button from '~/components/Button';
 import * as S from './styles';
 
 Yup.setLocale({
@@ -50,10 +51,10 @@ export default function Profile() {
           placeholder="Confirme a nova senha"
         />
 
-        <button type="submit">
+        <Button type="submit">
           <MdAddCircleOutline size={20} color="#fff" />
           Salvar perfil
-        </button>
+        </Button>
       </Form>
     </S.Container>
   );
