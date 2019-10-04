@@ -1,10 +1,20 @@
 import styled, { keyframes } from 'styled-components';
 import { darken } from 'polished';
 
+const fadeIn = keyframes`
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+`;
+
 export const Container = styled.div`
   max-width: 900px;
   margin: 50px auto;
   padding: 0 20px;
+  animation: ${fadeIn} 0.5s linear;
 
   div {
     display: flex;
