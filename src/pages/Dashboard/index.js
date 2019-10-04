@@ -12,7 +12,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await api.get('/meetups');
+      const res = await api.get('/meetups/owned');
 
       const data = res.data.map(m => {
         return {
