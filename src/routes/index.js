@@ -8,6 +8,7 @@ import SignUp from '~/pages/SignUp';
 import Profile from '~/pages/Profile';
 import Dashboard from '~/pages/Dashboard';
 import NewMeetup from '~/pages/NewMeetup';
+import EditMeetup from '~/pages/EditMeetup';
 import MeetupDetail from '~/pages/MeetupDetail';
 
 export default function Routes() {
@@ -26,6 +27,7 @@ export default function Routes() {
         component={MeetupDetail}
         isPrivate
       />
+      <Route path="/meetup/:id/edit" exact component={EditMeetup} isPrivate />
     </Switch>
   );
 }

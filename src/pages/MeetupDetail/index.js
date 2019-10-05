@@ -3,6 +3,8 @@ import Popup from 'reactjs-popup';
 import { MdPlace, MdEvent, MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
+import { format, parseISO } from 'date-fns';
+import pt from 'date-fns/locale/pt';
 
 import Button from '~/components/Button';
 import * as S from './styles';
@@ -15,11 +17,19 @@ const MeetupDetail = ({ match }) => {
   useEffect(() => {
     (async () => {
       const res = await api.get(`meetups/owned/${match.params.id}`);
-      setMeetup(res.data);
+      const data = {
+        ...res.data,
+        date: format(parseISO(res.data.date), "dd 'de' MMMM', às 'H:mm'h'", {
+          locale: pt,
+        }),
+      };
+      setMeetup(data);
     })();
   }, [match.params.id]);
 
-  async function handleEdit() {}
+  async function handleEdit() {
+    history.push(`/meetup/${meetup.id}/edit`);
+  }
 
   async function handleDelete() {
     await api.delete(`meetups/${meetup.id}`);
