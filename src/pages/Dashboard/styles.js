@@ -1,11 +1,10 @@
 import styled from 'styled-components';
+import { container } from '~/styles/common';
 
 export const Container = styled.div`
-  max-width: 900px;
-  padding: 0 20px;
+  ${container};
   display: flex;
   flex-direction: column;
-  margin: 50px auto;
 
   div {
     display: flex;

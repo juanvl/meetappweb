@@ -1,4 +1,5 @@
 import styled, { keyframes } from 'styled-components';
+import { container } from '~/styles/common';
 
 const fadeIn = keyframes`
   from {
@@ -10,9 +11,7 @@ const fadeIn = keyframes`
 `;
 
 export const Container = styled.div`
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 0 20px;
+  ${container};
   animation: ${fadeIn} 0.5s linear;
 
   div {

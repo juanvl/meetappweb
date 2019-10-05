@@ -1,9 +1,8 @@
 import styled from 'styled-components';
+import { container } from '~/styles/common';
 
 export const Container = styled.div`
-  max-width: 900px;
-  margin: 50px auto;
-  padding: 0 20px;
+  ${container};
 
   form {
     display: flex;
