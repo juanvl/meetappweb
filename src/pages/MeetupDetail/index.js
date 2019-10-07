@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
+import ReactTooltip from 'react-tooltip';
 import { MdPlace, MdEvent, MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
 import { toast } from 'react-toastify';
@@ -29,10 +30,12 @@ const MeetupDetail = ({ match }) => {
   }, [match.params.id]);
 
   async function handleEdit() {
+    if (meetup.past) return;
     history.push(`/meetup/${meetup.id}/edit`);
   }
 
   async function handleDelete() {
+    if (meetup.past) return;
     await api.delete(`meetups/${meetup.id}`);
     toast.success('Meetup cancelado!');
     history.push('/dashboard');
@@ -46,40 +49,54 @@ const MeetupDetail = ({ match }) => {
     );
   }
 
+  const cancelButton = (
+    <Button
+      isDisabled={meetup.past}
+      data-tip="Este meetup já aconteceu e não pode mais ser cancelado"
+      data-tip-disable={!meetup.past}
+    >
+      <MdDeleteForever size={20} color="#fff" />
+      Cancelar
+    </Button>
+  );
+
   return (
     <S.Container>
       <div>
+        <ReactTooltip />
         <h1>{meetup.title}</h1>
         <div>
-          <Button bgColor="#4DBAF9" className="editButton" onClick={handleEdit}>
+          <Button
+            bgColor="#4DBAF9"
+            className="editButton"
+            onClick={handleEdit}
+            isDisabled={meetup.past}
+            data-tip="Este meetup já aconteceu e não pode mais ser editado"
+            data-tip-disable={!meetup.past}
+          >
             <MdEdit size={20} color="#fff" />
             Editar
           </Button>
-          <Popup
-            trigger={
-              <Button>
-                <MdDeleteForever size={20} color="#fff" />
-                Cancelar
-              </Button>
-            }
-            modal
-            closeOnDocumentClick
-          >
-            {close => (
-              <div className="modal">
-                <h1>Cancelar Meetup</h1>
-                <span>Tem certeza que deseja cancelar este Meetup?</span>
-                <div>
-                  <Button onClick={handleDelete} className="yesButton">
-                    Sim
-                  </Button>
-                  <Button bgColor="#cccccc" onClick={() => close()}>
-                    Voltar
-                  </Button>
+          {meetup.past ? (
+            cancelButton
+          ) : (
+            <Popup trigger={cancelButton} modal closeOnDocumentClick>
+              {close => (
+                <div className="modal">
+                  <h1>Cancelar Meetup</h1>
+                  <span>Tem certeza que deseja cancelar este Meetup?</span>
+                  <div>
+                    <Button onClick={handleDelete} className="yesButton">
+                      Sim
+                    </Button>
+                    <Button bgColor="#cccccc" onClick={() => close()}>
+                      Voltar
+                    </Button>
+                  </div>
                 </div>
-              </div>
-            )}
-          </Popup>
+              )}
+            </Popup>
+          )}
         </div>
       </div>
 

@@ -4,7 +4,8 @@ import { darken } from 'polished';
 export const Button = styled.button.attrs(props => ({
   type: props.type || 'button',
 }))`
-  background-color: ${({ bgColor }) => bgColor || '#f94d6a'};
+  background-color: ${({ bgColor, isDisabled }) =>
+    (isDisabled && '#bbb') || (bgColor || '#f94d6a')};
   color: #fff;
   padding: 12px 20px;
   border: 0;
@@ -17,8 +18,8 @@ export const Button = styled.button.attrs(props => ({
   justify-content: space-between;
 
   &:hover {
-    background-color: ${({ bgColor }) =>
-      bgColor ? darken(0.05, bgColor) : darken(0.05, '#f94d6a')};
+    background-color: ${({ bgColor, isDisabled }) =>
+      darken(0.05, (isDisabled && '#bbb') || (bgColor || '#f94d6a'))};
   }
 
   svg {
