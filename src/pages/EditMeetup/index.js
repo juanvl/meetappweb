@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { Form, Input } from '@rocketseat/unform';
 import { MdAddCircleOutline } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
@@ -94,6 +95,14 @@ const EditMeetup = ({ match }) => {
       </Form>
     </S.Container>
   );
+};
+
+EditMeetup.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default EditMeetup;

@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import Popup from 'reactjs-popup';
 import { MdPlace, MdEvent, MdEdit, MdDeleteForever } from 'react-icons/md';
 import { FaSpinner } from 'react-icons/fa';
@@ -98,6 +99,14 @@ const MeetupDetail = ({ match }) => {
       </footer>
     </S.Container>
   );
+};
+
+MeetupDetail.propTypes = {
+  match: PropTypes.shape({
+    params: PropTypes.shape({
+      id: PropTypes.string,
+    }),
+  }).isRequired,
 };
 
 export default MeetupDetail;

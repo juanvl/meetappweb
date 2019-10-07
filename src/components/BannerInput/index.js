@@ -1,4 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
+import PropTypes from 'prop-types';
 import { MdCameraAlt } from 'react-icons/md';
 import { useField } from '@rocketseat/unform';
 
@@ -58,3 +59,11 @@ export default function BannerInput({ error }) {
     </S.Container>
   );
 }
+
+BannerInput.propTypes = {
+  error: PropTypes.bool,
+};
+
+BannerInput.defaultProps = {
+  error: false,
+};
