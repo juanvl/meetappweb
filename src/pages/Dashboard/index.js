@@ -13,14 +13,14 @@ const Dashboard = () => {
 
   useEffect(() => {
     (async () => {
-      const res = await api.get('meetups/owned');
+      const res = await api.get('uomeetups');
 
       const data = res.data.map(m => {
         return {
           ...m,
           formattedDate: format(
             parseISO(m.date),
-            "dd 'de' MMMM', às 'H:mm'h'",
+            "dd 'de' MMMM', às 'HH:mm'h'",
             {
               locale: pt,
             }

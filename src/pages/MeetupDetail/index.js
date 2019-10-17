@@ -18,7 +18,7 @@ const MeetupDetail = ({ match }) => {
 
   useEffect(() => {
     (async () => {
-      const res = await api.get(`meetups/owned/${match.params.id}`);
+      const res = await api.get(`meetups/${match.params.id}`);
       const data = {
         ...res.data,
         date: format(parseISO(res.data.date), "dd 'de' MMMM', às 'H:mm'h'", {
@@ -36,7 +36,7 @@ const MeetupDetail = ({ match }) => {
 
   async function handleDelete() {
     if (meetup.past) return;
-    await api.delete(`meetups/${meetup.id}`);
+    await api.delete(`uomeetups/${meetup.id}`);
     toast.success('Meetup cancelado!');
     history.push('/dashboard');
   }

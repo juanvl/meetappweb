@@ -33,7 +33,7 @@ const EditMeetup = ({ match }) => {
 
   useEffect(() => {
     (async () => {
-      const res = await api.get(`meetups/owned/${match.params.id}`);
+      const res = await api.get(`meetups/${match.params.id}`);
 
       const data = {
         ...res.data,
@@ -54,7 +54,7 @@ const EditMeetup = ({ match }) => {
     }
 
     try {
-      await api.put(`meetups/${meetup.id}`, data);
+      await api.put(`uomeetups/${meetup.id}`, data);
       toast.success('Meetup editado com sucesso!');
       history.push(`/meetup/${meetup.id}/detail`);
     } catch (error) {
